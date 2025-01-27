@@ -10,10 +10,12 @@
   numpy,
   pandas,
   scikit-learn,
+  sklearn-compat,
   scipy,
   tensorflow,
   threadpoolctl,
   pytestCheckHook,
+  python,
 }:
 
 buildPythonPackage rec {
@@ -26,7 +28,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "scikit-learn-contrib";
     repo = "imbalanced-learn";
-    tag = version;
+    rev = "refs/tags/${version}";
     hash = "sha256-osmALi5vTV+3kgldY/VhYkNvpXX11KwJ/dIX/5E7Uhc=";
   };
 
@@ -39,6 +41,7 @@ buildPythonPackage rec {
     joblib
     numpy
     scikit-learn
+    sklearn-compat
     scipy
     threadpoolctl
   ];
@@ -60,6 +63,9 @@ buildPythonPackage rec {
 
   preCheck = ''
     export HOME=$TMPDIR
+    # The GitHub source contains too many files picked up by pytest like
+    # examples and documentation files which can't pass.
+    cd $out/${python.sitePackages}
   '';
 
   disabledTestPaths = [
