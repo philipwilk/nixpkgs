@@ -369,6 +369,7 @@ with pkgs;
     gandi = python3Packages.callPackage ../tools/networking/octodns/providers/gandi { };
     hetzner = python3Packages.callPackage ../tools/networking/octodns/providers/hetzner { };
     powerdns = python3Packages.callPackage ../tools/networking/octodns/providers/powerdns { };
+    desec = python3Packages.callPackage ../tools/networking/octodns/providers/desec { };
   };
 
   oletools = with python3.pkgs; toPythonApplication oletools;
