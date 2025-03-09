@@ -32,14 +32,14 @@ buildPythonPackage rec {
     hash = "sha256-zu/chWMsr0maBItDRFnQO15iFmWAHp23GXvUhvXTNDM=";
   };
 
-  nativeBuildInputs = [
+  build-system = [
     hatch-jupyter-builder
     hatch-nodejs-version
     hatchling
     jupyterlab
   ];
 
-  propagatedBuildInputs = [
+  dependencies = [
     jupyter-server
     nbdime
     git
